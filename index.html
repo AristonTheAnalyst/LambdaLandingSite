@@ -173,10 +173,7 @@
             margin-right: auto;
         }
         h1 .accent {
-            background: linear-gradient(135deg, #f5a85a 0%, #eb912b 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--accent);
         }
 
         .subhead {
@@ -215,6 +212,11 @@
         }
         .signup input::placeholder { color: var(--text-dim); }
         .signup button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 132px;
             background: var(--accent);
             color: #0a0a0a;
             border: none;
@@ -377,9 +379,152 @@
             flex-wrap: wrap;
             gap: 16px;
         }
+
+        /* ---------- Page load overlay ---------- */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background: var(--bg);
+            transition: opacity 0.55s ease, visibility 0.55s ease;
+        }
+        .page-loader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .page-loader__ring {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--border-strong);
+            border-top-color: var(--accent);
+            animation: loader-spin 0.75s linear infinite;
+        }
+        .page-loader__mark {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            background: var(--accent);
+            border-radius: 8px;
+            animation: loader-pulse 1.4s ease-in-out infinite;
+        }
+        .page-loader__mark svg { display: block; }
+        .page-loader__label {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        @keyframes loader-spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes loader-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.94); opacity: 0.85; }
+        }
+
+        /* Initial entrance (hero) */
+        body:not(.is-ready) .hero-reveal {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        body.is-ready .hero-reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        body.is-ready .hero-reveal:nth-child(1) { transition-delay: 0.05s; }
+        body.is-ready .hero-reveal:nth-child(2) { transition-delay: 0.12s; }
+        body.is-ready .hero-reveal:nth-child(3) { transition-delay: 0.19s; }
+        body.is-ready .hero-reveal:nth-child(4) { transition-delay: 0.26s; }
+        body.is-ready .hero-reveal:nth-child(5) { transition-delay: 0.33s; }
+
+        /* Scroll reveal */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-stagger.is-visible > .reveal-on-scroll {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-stagger.is-visible > .reveal-on-scroll:nth-child(1) { transition-delay: 0.04s; }
+        .reveal-stagger.is-visible > .reveal-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-stagger.is-visible > .reveal-on-scroll:nth-child(3) { transition-delay: 0.16s; }
+        .reveal-stagger.is-visible > .reveal-on-scroll:nth-child(4) { transition-delay: 0.22s; }
+
+        /* Submit button loading */
+        .signup button .btn-spinner {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid rgba(10, 10, 10, 0.25);
+            border-top-color: #0a0a0a;
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+        }
+        .signup button.is-loading .btn-spinner {
+            opacity: 1;
+            animation: loader-spin 0.65s linear infinite;
+        }
+        .signup button.is-loading .btn-text {
+            opacity: 0;
+        }
+        .signup button .btn-text {
+            transition: opacity 0.15s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .page-loader,
+            .page-loader__ring,
+            .page-loader__mark,
+            .signup button .btn-spinner,
+            .hero-reveal,
+            .reveal-on-scroll {
+                animation: none !important;
+                transition: none !important;
+            }
+            .page-loader__ring { border-top-color: var(--accent); animation: none; }
+            body:not(.is-ready) .hero-reveal,
+            .reveal-on-scroll,
+            .reveal-stagger > .reveal-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+            .page-loader.is-hidden {
+                transition: opacity 0.15s ease;
+            }
+        }
     </style>
 </head>
 <body>
+    <div id="page-loader" class="page-loader" role="status" aria-live="polite" aria-busy="true" aria-label="Loading">
+        <div class="page-loader__mark" aria-hidden="true">
+            <svg viewBox="0 0 314 528" width="14" height="24" focusable="false">
+                <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
+            </svg>
+        </div>
+        <div class="page-loader__ring" aria-hidden="true"></div>
+        <span class="page-loader__label">Loading</span>
+    </div>
+
     <nav>
         <div class="container nav-inner">
             <div class="logo">
@@ -402,27 +547,27 @@
     <header class="hero">
         <div class="hero-grid"></div>
         <div class="container hero-inner">
-            <div class="eyebrow">
+            <div class="eyebrow hero-reveal">
                 <span class="dot"></span>
                 <span class="mono">Currently in development</span>
             </div>
-            <h1>The training framework<br>that <span class="accent">learns from you.</span></h1>
-            <p class="subhead">
+            <h1 class="hero-reveal">The training framework<br>that <span class="accent">learns from you.</span></h1>
+            <p class="subhead hero-reveal">
                 A resistance training framework built around your data. The principles that drive progress are universal — Lambda helps you apply them to your training, your body, and your goals.
             </p>
 
-            <form id="waitlist-form" class="signup" novalidate>
+            <form id="waitlist-form" class="signup hero-reveal" novalidate>
                 <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
-                <button type="submit">Join waitlist</button>
+                <button type="submit" aria-busy="false"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-text">Join waitlist</span></button>
             </form>
-            <p class="signup-note">Be first in line. No spam — only meaningful updates.</p>
+            <p class="signup-note hero-reveal">Be first in line. No spam — only meaningful updates.</p>
             <p id="signup-status" class="signup-status" role="status" aria-live="polite"></p>
         </div>
     </header>
 
     <section id="features">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <div class="section-label">// Features</div>
                 <h2>Stop guessing. Start knowing.</h2>
                 <p class="section-sub">
@@ -430,29 +575,29 @@
                 </p>
             </div>
 
-            <div class="features">
-                <div class="feature">
+            <div class="features reveal-stagger">
+                <div class="feature reveal-on-scroll">
                     <div class="feature-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                     </div>
                     <h3>A framework, not a program</h3>
                     <p>Powerlifting, bodybuilding, calisthenics — Lambda works across paradigms because it's built on principles, not prescriptions. The method stays yours.</p>
                 </div>
-                <div class="feature">
+                <div class="feature reveal-on-scroll">
                     <div class="feature-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
                     </div>
                     <h3>Your evidence</h3>
                     <p>Lambda builds from your own training history. Because your data is the most reliable evidence there is.</p>
                 </div>
-                <div class="feature">
+                <div class="feature reveal-on-scroll">
                     <div class="feature-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
                     </div>
                     <h3>Reflection as a training variable</h3>
                     <p>Mood, perception, notes. Lambda captures the subjective side of training and puts it to work alongside your numbers.</p>
                 </div>
-                <div class="feature">
+                <div class="feature reveal-on-scroll">
                     <div class="feature-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </div>
@@ -465,7 +610,7 @@
 
     <section id="how">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <div class="section-label">// How it works</div>
                 <h2>A framework for<br>decision making.</h2>
                 <p class="section-sub">
@@ -473,23 +618,23 @@
                 </p>
             </div>
 
-            <div class="steps">
-                <div class="step">
+            <div class="steps reveal-stagger">
+                <div class="step reveal-on-scroll">
                     <div class="step-num">01 / Design</div>
                     <h3>Build your plan</h3>
                     <p>Start with a plan built around your goals, schedule, and method. Lambda gives you the structure to be intentional from day one.</p>
                 </div>
-                <div class="step">
+                <div class="step reveal-on-scroll">
                     <div class="step-num">02 / Track</div>
                     <h3>Run the plan long enough to learn from it</h3>
                     <p>Log your sets, sessions, and how you felt. Consistency is what makes the data worth reading.</p>
                 </div>
-                <div class="step">
+                <div class="step reveal-on-scroll">
                     <div class="step-num">03 / Analyse</div>
                     <h3>Understand what's actually working</h3>
                     <p>Lambda brings your numbers and your reflections together — so you can see where your method is, and isn't, delivering growth.</p>
                 </div>
-                <div class="step">
+                <div class="step reveal-on-scroll">
                     <div class="step-num">04 / Evolve</div>
                     <h3>Make the call with confidence</h3>
                     <p>You decide what changes — load, frequency, exercise selection, structure. Lambda doesn't prescribe. It informs. The best decision is always yours to make.</p>
@@ -498,7 +643,7 @@
         </div>
     </section>
 
-    <section id="waitlist" class="cta-section">
+    <section id="waitlist" class="cta-section reveal-on-scroll">
         <div class="container">
             <div class="cta-card">
                 <div class="section-label">// Early access</div>
@@ -508,7 +653,7 @@
                 </p>
                 <form class="signup" novalidate>
                     <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
-                    <button type="submit">Join waitlist</button>
+                    <button type="submit" aria-busy="false"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-text">Join waitlist</span></button>
                 </form>
                 <p class="signup-note">No spam. Unsubscribe anytime.</p>
                 <p class="signup-status" role="status" aria-live="polite"></p>
@@ -532,6 +677,64 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        (function initPageLoader() {
+            const loader = document.getElementById('page-loader');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function finish() {
+                document.body.classList.add('is-ready');
+                if (!loader) return;
+                loader.classList.add('is-hidden');
+                loader.setAttribute('aria-busy', 'false');
+                loader.setAttribute('aria-label', 'Page loaded');
+                loader.addEventListener('transitionend', function onEnd(ev) {
+                    if (ev.propertyName === 'opacity' && loader.classList.contains('is-hidden')) {
+                        loader.remove();
+                    }
+                }, { once: true });
+            }
+
+            if (reducedMotion) {
+                finish();
+                return;
+            }
+
+            const minMs = 480;
+            const started = performance.now();
+            function scheduleFinish() {
+                var elapsed = performance.now() - started;
+                var wait = Math.max(0, minMs - elapsed);
+                setTimeout(finish, wait);
+            }
+
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(scheduleFinish, scheduleFinish);
+            } else {
+                window.addEventListener('load', scheduleFinish, { once: true });
+            }
+        })();
+
+        (function initScrollReveals() {
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var nodes = document.querySelectorAll('.reveal-on-scroll, .reveal-stagger');
+            if (!nodes.length) return;
+
+            if (reducedMotion || !('IntersectionObserver' in window)) {
+                nodes.forEach(function (el) { el.classList.add('is-visible'); });
+                return;
+            }
+
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    io.unobserve(entry.target);
+                });
+            }, { rootMargin: '0px 0px -6% 0px', threshold: 0.12 });
+
+            nodes.forEach(function (el) { io.observe(el); });
+        })();
 
         // Replace this with your Formspree/Getform/Web3Forms endpoint to actually
         // collect emails. Until then, the form stores submissions in localStorage
@@ -558,8 +761,8 @@
                 }
 
                 button.disabled = true;
-                const originalLabel = button.textContent;
-                button.textContent = 'Joining…';
+                button.classList.add('is-loading');
+                button.setAttribute('aria-busy', 'true');
 
                 try {
                     if (FORM_ENDPOINT) {
@@ -583,7 +786,8 @@
                     status.className = 'signup-status error';
                 } finally {
                     button.disabled = false;
-                    button.textContent = originalLabel;
+                    button.classList.remove('is-loading');
+                    button.setAttribute('aria-busy', 'false');
                 }
             });
         }
