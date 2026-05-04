@@ -105,11 +105,6 @@
         }
         .nav-cta:hover { opacity: 0.85; }
 
-        @media (max-width: 720px) {
-            .nav-links { display: none; }
-        }
-
-        /* ---------- Hero ---------- */
         .hero {
             position: relative;
             padding: 96px 0 80px;
@@ -171,6 +166,12 @@
             max-width: 23ch;
             margin-left: auto;
             margin-right: auto;
+        }
+        /* Fixed two-line hero: only <br> breaks lines; size scales down on narrow viewports */
+        h1.headline-fixed-lines {
+            max-width: min(100%, calc(100vw - 48px));
+            white-space: nowrap;
+            font-size: clamp(17px, 5.75vw + 0.35rem, 72px);
         }
         h1 .accent {
             color: var(--accent);
@@ -271,6 +272,12 @@
             max-width: 22ch;
             margin: 0 auto 16px;
         }
+        /* Section titles with explicit <br>: no extra wrapping */
+        h2.headline-fixed-lines {
+            max-width: min(100%, calc(100vw - 48px));
+            white-space: nowrap;
+            font-size: clamp(19px, 3.8vw + 0.85rem, 40px);
+        }
         .section-sub {
             color: var(--text-muted);
             max-width: 56ch;
@@ -291,9 +298,11 @@
             padding: 28px;
             transition: border-color 0.2s ease, transform 0.2s ease;
         }
-        .feature:hover {
-            border-color: var(--border-strong);
-            transform: translateY(-2px);
+        @media (hover: hover) {
+            .feature:hover {
+                border-color: var(--border-strong);
+                transform: translateY(-2px);
+            }
         }
         .feature-icon {
             width: 40px;
@@ -378,6 +387,45 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 16px;
+        }
+
+        /* Carousel (arrows + track; nav hidden on desktop) */
+        .carousel-nav {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .carousel-btn {
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border-radius: 10px;
+            border: 1px solid var(--border-strong);
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+        }
+        .carousel-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+        @media (hover: hover) {
+            .carousel-btn:hover:not(:disabled) {
+                background: var(--bg-elevated);
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+        }
+        .carousel-btn svg {
+            display: block;
+            width: 20px;
+            height: 20px;
         }
 
         /* ---------- Page load overlay ---------- */
@@ -491,7 +539,82 @@
             transition: opacity 0.15s ease;
         }
 
+        /* ---------- Mobile layout (carousel + rhythm) ---------- */
+        @media (max-width: 720px) {
+            .nav-links { display: none; }
+
+            section#features,
+            section#how,
+            section#waitlist {
+                scroll-margin-top: 80px;
+            }
+
+            section { padding: 60px 0; }
+
+            .section-header { margin-bottom: 36px; }
+
+            .hero {
+                padding: 56px 0 48px;
+            }
+            .eyebrow { margin-bottom: 20px; }
+            .subhead { margin-bottom: 32px; }
+
+            .cta-card {
+                padding: 40px 20px;
+            }
+            .cta-card .section-sub { margin-bottom: 24px; }
+
+            footer { padding: 24px 0; }
+
+            .carousel-nav {
+                display: flex;
+            }
+
+            /* Horizontal scroll-snap carousels */
+            .carousel-track {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 12px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-snap-type: x mandatory;
+                scroll-padding-inline: 24px;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior-x: contain;
+                margin-left: -24px;
+                margin-right: -24px;
+                padding-left: 24px;
+                padding-right: 24px;
+                padding-bottom: 2px;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            .carousel-track::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* One full-width slide per view (matches track padding, no adjacent peek) */
+            .carousel-track .feature,
+            .carousel-track .step {
+                flex: 0 0 calc(100vw - 48px);
+                width: calc(100vw - 48px);
+                max-width: calc(100vw - 48px);
+                scroll-snap-align: start;
+                scroll-snap-stop: normal;
+            }
+
+            .carousel-track .step {
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 24px 20px;
+                box-sizing: border-box;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
             .page-loader,
             .page-loader__ring,
             .page-loader__mark,
@@ -551,7 +674,7 @@
                 <span class="dot"></span>
                 <span class="mono">Currently in development</span>
             </div>
-            <h1 class="hero-reveal">The training framework<br>that <span class="accent">learns from you.</span></h1>
+            <h1 class="hero-reveal headline-fixed-lines">the training framework<br>that <span class="accent">learns from you</span></h1>
             <p class="subhead hero-reveal">
                 A resistance training framework built around your data. The principles that drive progress are universal — Lambda helps you apply them to your training, your body, and your goals.
             </p>
@@ -569,13 +692,14 @@
         <div class="container">
             <div class="section-header reveal-on-scroll">
                 <div class="section-label">// Features</div>
-                <h2>Stop guessing. Start knowing.</h2>
+                <h2 class="headline-fixed-lines">Stop assuming.<br>Start knowing.</h2>
                 <p class="section-sub">
                     Lambda turns your training into a clear, evolving picture of what's working, what isn't, and what comes next. Not someone else's data. Yours.
                 </p>
             </div>
 
-            <div class="features reveal-stagger">
+            <div class="carousel-wrap">
+            <div class="features reveal-stagger carousel-track">
                 <div class="feature reveal-on-scroll">
                     <div class="feature-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
@@ -605,6 +729,15 @@
                     <p>Real oversight over your training history. When progress stalls, see exactly where — and why.</p>
                 </div>
             </div>
+            <div class="carousel-nav" role="group" aria-label="Feature carousel">
+                <button type="button" class="carousel-btn carousel-btn--prev" aria-label="Previous slide">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button type="button" class="carousel-btn carousel-btn--next" aria-label="Next slide">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
+            </div>
         </div>
     </section>
 
@@ -612,13 +745,14 @@
         <div class="container">
             <div class="section-header reveal-on-scroll">
                 <div class="section-label">// How it works</div>
-                <h2>A framework for<br>decision making.</h2>
+                <h2 class="headline-fixed-lines">A framework for<br>decision making.</h2>
                 <p class="section-sub">
                     If you can't measure it, you can't manage it. Training data is highly quantifiable — and Lambda is built to collect it, organise it, and surface what it's actually telling you.
                 </p>
             </div>
 
-            <div class="steps reveal-stagger">
+            <div class="carousel-wrap">
+            <div class="steps reveal-stagger carousel-track">
                 <div class="step reveal-on-scroll">
                     <div class="step-num">01 / Design</div>
                     <h3>Build your plan</h3>
@@ -639,6 +773,15 @@
                     <h3>Make the call with confidence</h3>
                     <p>You decide what changes — load, frequency, exercise selection, structure. Lambda doesn't prescribe. It informs. The best decision is always yours to make.</p>
                 </div>
+            </div>
+            <div class="carousel-nav" role="group" aria-label="How it works carousel">
+                <button type="button" class="carousel-btn carousel-btn--prev" aria-label="Previous slide">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button type="button" class="carousel-btn carousel-btn--next" aria-label="Next slide">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
             </div>
         </div>
     </section>
@@ -734,6 +877,56 @@
             }, { rootMargin: '0px 0px -6% 0px', threshold: 0.12 });
 
             nodes.forEach(function (el) { io.observe(el); });
+        })();
+
+        (function initCarousels() {
+            function slideDelta(track) {
+                var el = track.firstElementChild;
+                if (!el) return 0;
+                var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 12;
+                return el.getBoundingClientRect().width + gap;
+            }
+
+            function updateButtons(track, prev, next) {
+                var max = track.scrollWidth - track.clientWidth;
+                if (max <= 0) {
+                    prev.disabled = true;
+                    next.disabled = true;
+                    return;
+                }
+                var x = track.scrollLeft;
+                prev.disabled = x <= 2;
+                next.disabled = x >= max - 2;
+            }
+
+            document.querySelectorAll('.carousel-wrap').forEach(function (wrap) {
+                var track = wrap.querySelector('.carousel-track');
+                var prev = wrap.querySelector('.carousel-btn--prev');
+                var next = wrap.querySelector('.carousel-btn--next');
+                if (!track || !prev || !next) return;
+
+                function onScroll() {
+                    updateButtons(track, prev, next);
+                }
+
+                prev.addEventListener('click', function () {
+                    var d = slideDelta(track);
+                    if (d) {
+                        var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                        track.scrollBy({ left: -d, behavior: smooth ? 'smooth' : 'auto' });
+                    }
+                });
+                next.addEventListener('click', function () {
+                    var d = slideDelta(track);
+                    if (d) {
+                        var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                        track.scrollBy({ left: d, behavior: smooth ? 'smooth' : 'auto' });
+                    }
+                });
+                track.addEventListener('scroll', onScroll, { passive: true });
+                window.addEventListener('resize', onScroll);
+                onScroll();
+            });
         })();
 
         // Replace this with your Formspree/Getform/Web3Forms endpoint to actually
