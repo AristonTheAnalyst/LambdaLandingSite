@@ -1,49 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Page</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #2a2a2a;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+# Lambda Landing Site
 
-        .container {
-            text-align: center;
-        }
+Marketing / interest-gauging landing page for **Lambda** — a data-driven framework for resistance training.
 
-        button {
-            background-color: white;
-            color: #2a2a2a;
-            border: none;
-            padding: 12px 32px;
-            font-size: 16px;
-            font-weight: 500;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+Hosted via GitHub Pages at: <https://aristontheanalyst.github.io/LambdaLandingSite/>
 
-        button:hover {
-            background-color: #f0f0f0;
-        }
+## Stack
 
-        button:active {
-            background-color: #e0e0e0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <button>Button</button>
-    </div>
-</body>
-</html>
+- Single static `index.html` with embedded CSS and vanilla JS.
+- No build step, no dependencies.
+- Google Fonts (Inter, JetBrains Mono) loaded via CDN.
+
+## Local preview
+
+Just open `index.html` in a browser, or serve the directory:
+
+```bash
+python -m http.server 8000
+# then visit http://localhost:8000
+```
+
+## Wiring up the waitlist form
+
+The email form currently stores submissions in `localStorage` as a placeholder so the page is testable end-to-end. To actually collect emails, set `FORM_ENDPOINT` near the bottom of `index.html` to your form-handler URL.
+
+Drop-in compatible services (free tiers, no backend needed):
+
+- [Formspree](https://formspree.io) — `https://formspree.io/f/<your-id>`
+- [Getform](https://getform.io)
+- [Web3Forms](https://web3forms.com)
+
+The submit handler POSTs JSON `{ "email": "..." }` to whatever endpoint you set.
