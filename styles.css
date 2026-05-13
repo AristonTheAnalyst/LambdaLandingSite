@@ -981,6 +981,16 @@
         @media (max-width: 960px) {
             .page-sub__hero--split { grid-template-columns: 1fr; }
         }
+        /* On mobile, reorder so the signup card appears above the hero text */
+        @media (max-width: 720px) {
+            .page-sub__hero--split {
+                display: flex;
+                flex-direction: column;
+            }
+            .page-sub__hero--split > .beta-signup-card {
+                order: -1;
+            }
+        }
         .beta-signup-card {
             background:
                 radial-gradient(ellipse 80% 100% at 50% 0%, var(--accent-dim), transparent 70%),
