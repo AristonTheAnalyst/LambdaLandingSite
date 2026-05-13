@@ -74,8 +74,10 @@
         .logo-mark svg { display: block; }
         .nav-links {
             display: flex;
-            gap: 32px;
-            font-size: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px 22px;
+            font-size: 13px;
             color: var(--text-muted);
         }
         .nav-links a:hover { color: var(--text); }
@@ -197,6 +199,9 @@
             font-size: clamp(22px, 0.85rem + 6.9cqi, 46px);
         }
         h1 .accent {
+            color: var(--accent);
+        }
+        .accent {
             color: var(--accent);
         }
 
@@ -866,4 +871,142 @@
         }
         .page-sub > section {
             border-top: 1px solid var(--border);
+        }
+
+        .text-link-accent {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .text-link-accent:hover {
+            filter: brightness(1.08);
+        }
+
+        .overview-strip {
+            padding: 64px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px 32px;
+        }
+        @media (max-width: 900px) {
+            .overview-grid { grid-template-columns: 1fr; }
+        }
+        .overview-pillar h3 {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin: 8px 0 10px;
+            color: var(--text);
+        }
+        .overview-pillar p {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .coaching-layout {
+            padding: 64px 0 96px;
+        }
+        .coaching-prose h2 {
+            font-size: clamp(22px, 2.5vw, 28px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 8px 0 16px;
+            max-width: 22ch;
+        }
+        .coaching-grid {
+            display: grid;
+            grid-template-columns: 1fr minmax(280px, 400px);
+            gap: 48px;
+            align-items: start;
+        }
+        @media (max-width: 960px) {
+            .coaching-grid { grid-template-columns: 1fr; }
+        }
+        .coaching-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-strong);
+            border-radius: 16px;
+            padding: 28px;
+        }
+        .coaching-card h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            margin-left: 0;
+            max-width: none;
+        }
+        .coaching-card .section-sub {
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+        .booking-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+        .booking-field {
+            margin-bottom: 18px;
+        }
+        .booking-select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-strong);
+            background: var(--surface);
+            color: var(--text-dim);
+            font-family: inherit;
+            font-size: 15px;
+            cursor: not-allowed;
+        }
+        .booking-note {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-top: 16px;
+            line-height: 1.5;
+        }
+        .booking-actions {
+            margin-top: 24px;
+        }
+        .btn-booking {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            background: var(--border-strong);
+            color: var(--text-dim);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: not-allowed;
+        }
+        .coaching-benefits {
+            list-style: none;
+            margin: 24px 0 0;
+            padding: 0;
+        }
+        .coaching-benefits li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .coaching-benefits li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
         }

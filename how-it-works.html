@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How it works — Lambda</title>
-    <meta name="description" content="How Lambda collects training data, surfaces insight, and supports your decisions.">
+    <title>How it works &mdash; Lambda</title>
+    <meta name="description" content="How Lambda works: opinionated logging, pattern recognition across sessions, and a decision framework built on your own data &mdash; not someone else&rsquo;s program.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +25,7 @@
             <div class="nav-links">
                 <a href="about.html">About</a>
                 <a href="how-it-works.html" aria-current="page">How it works</a>
+                <a href="coaching.html">Coaching</a>
                 <a href="contact.html">Contact</a>
                 <a href="beta-testing.html">Beta Testing</a>
             </div>
@@ -36,39 +37,154 @@
         <header class="page-sub__hero">
             <div class="container">
                 <div class="section-label">// How it works</div>
-                <h1>A framework for decision making.</h1>
+                <h1>Opinionated by design.<br>Evidence by default.</h1>
                 <p class="section-sub">
-                    If you can't measure it, you can't manage it. Training data is highly quantifiable — and Lambda is built to collect it, organise it, and surface what it's actually telling you.
+                    Most training apps give you too much rope. Hundreds of optional fields, seven ways to log the same set, and still no clear answer to the one question that matters. Lambda is different by design &mdash; every field in the app exists because it contributes to answering <span class="accent">is this working?</span>
+                </p>
+                <p class="section-sub" style="margin-top: 1rem;">
+                    The result: logging that&rsquo;s fast enough to actually do, data that&rsquo;s clean enough to actually read, and conclusions you can stand behind.
                 </p>
             </div>
         </header>
 
         <section>
             <div class="container">
+                <div class="overview-grid reveal-on-scroll" style="padding: 32px 0 16px;">
+                    <div class="overview-pillar">
+                        <div class="section-label">// Log it</div>
+                        <h3>Track what matters, nothing else</h3>
+                        <p>Sets, reps, weight, bodyweight, sleep, pre-session readiness, session feel. Each field has a specific job. Together they build a picture of your training that can actually be read.</p>
+                    </div>
+                    <div class="overview-pillar">
+                        <div class="section-label">// Read it</div>
+                        <h3>Patterns across sessions, not noise across sets</h3>
+                        <p>A single session is anecdote. Lambda organises your logs into trends &mdash; volume over time, performance relative to readiness, exercise consistency &mdash; and surfaces what actually means something.</p>
+                    </div>
+                    <div class="overview-pillar">
+                        <div class="section-label">// Decide</div>
+                        <h3>Three possible conclusions</h3>
+                        <p>Worked. Failed. Needs more time. Lambda narrows the question using your own data. You make the call. The evidence is yours; the decision is yours.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header reveal-on-scroll">
+                    <div class="section-label">// The log</div>
+                    <h2 class="headline-fixed-lines">Every field<br>earns its place.</h2>
+                    <p class="section-sub">
+                        Lambda doesn&rsquo;t give you optional fields to fill in or skip. It gives you exactly what&rsquo;s needed to answer the question &mdash; grouped by what they measure and why they matter.
+                    </p>
+                </div>
+
+                <div class="carousel-wrap">
+                    <div class="features reveal-stagger carousel-track">
+                        <div class="feature reveal-on-scroll">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                            </div>
+                            <h3>Session data</h3>
+                            <p>Sets, reps, and weight &mdash; the volume and load core. Lambda also tracks <strong>half-reps</strong> and reps from <strong>supersets</strong> within the same set structure, so your data accurately reflects what you actually did without forcing artificial splits.</p>
+                        </div>
+                        <div class="feature reveal-on-scroll">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            </div>
+                            <h3>Readiness data</h3>
+                            <p>Bodyweight, sleep quality, whether you&rsquo;ve eaten and hydrated. These aren&rsquo;t nice-to-haves &mdash; they&rsquo;re the context that explains why a session went the way it did. If these are consistently off, that pattern matters too.</p>
+                        </div>
+                        <div class="feature reveal-on-scroll">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                            </div>
+                            <h3>Session feel</h3>
+                            <p>Subjective signal alongside the numbers. When how it felt agrees with what the numbers say, that&rsquo;s confirming. When they disagree &mdash; sessions that felt awful but the numbers held up, or easy but the numbers dropped &mdash; that&rsquo;s more interesting.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-nav" role="group" aria-label="Logging carousel">
+                        <button type="button" class="carousel-btn carousel-btn--prev" aria-label="Previous slide">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <button type="button" class="carousel-btn carousel-btn--next" aria-label="Next slide">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header reveal-on-scroll">
+                    <div class="section-label">// Scenarios</div>
+                    <h2 class="headline-fixed-lines">What Lambda<br>actually surfaces.</h2>
+                    <p class="section-sub">
+                        Two examples of what the framework finds when you give it real training data. The findings aren&rsquo;t always what you&rsquo;d expect.
+                    </p>
+                </div>
+
+                <div class="carousel-wrap">
+                    <div class="features reveal-stagger carousel-track">
+                        <div class="feature reveal-on-scroll">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            </div>
+                            <h3>The structured &ldquo;winger&rdquo;</h3>
+                            <p>You&rsquo;ve been training without a written plan &mdash; going by feel, doing what seems right. Six weeks of logs later, Lambda shows you&rsquo;ve been hitting the same movement patterns every session, adding load progressively, with stable session-feel scores throughout. You weren&rsquo;t winging it. You were training structurally and it&rsquo;s been working. Lambda&rsquo;s conclusion: <span class="accent">confirmed</span>. Keep the direction.</p>
+                        </div>
+                        <div class="feature reveal-on-scroll">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            </div>
+                            <h3>The program that isn&rsquo;t</h3>
+                            <p>Twelve weeks in, progress has stalled and you&rsquo;re not sure why. Lambda shows your primary lower body compound has changed four times &mdash; squat to hack squat to leg press to Bulgarian split squat. Each swap reset the adaptation window. No single movement has accumulated enough consistent data to show whether it&rsquo;s working or failing. Lambda&rsquo;s conclusion: <span class="accent">insufficient data</span>. The problem isn&rsquo;t training intensity. It&rsquo;s exercise consistency.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-nav" role="group" aria-label="Scenarios carousel">
+                        <button type="button" class="carousel-btn carousel-btn--prev" aria-label="Previous slide">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <button type="button" class="carousel-btn carousel-btn--next" aria-label="Next slide">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header reveal-on-scroll">
+                    <div class="section-label">// Cycle</div>
+                    <h2 class="headline-fixed-lines">Design, track,<br>analyse, decide.</h2>
+                    <p class="section-sub">Four phases that repeat &mdash; each one informed by more signal than the last.</p>
+                </div>
                 <div class="carousel-wrap">
                     <div class="steps reveal-stagger carousel-track">
                         <div class="step reveal-on-scroll">
                             <div class="step-num">01 / Design</div>
-                            <h3>Build your plan</h3>
-                            <p>Start with a plan built around your goals, schedule, and method. Lambda gives you the structure to be intentional from day one.</p>
+                            <h3>Set your intent</h3>
+                            <p>Decide what you&rsquo;re training for &mdash; a strength block, a hypertrophy phase, a competition cycle. Lambda structures your plan around that intent. Not a preset handed to you; a framework for the choices you make.</p>
                         </div>
                         <div class="step reveal-on-scroll">
                             <div class="step-num">02 / Track</div>
-                            <h3>Run the plan long enough to learn from it</h3>
-                            <p>Log your sets, sessions, and how you felt. Consistency is what makes the data worth reading.</p>
+                            <h3>Log with purpose</h3>
+                            <p>Each session gets the full picture: load, volume, readiness, feel. Consistent logging is what turns individual sessions into readable data. Lambda keeps it fast so it actually happens.</p>
                         </div>
                         <div class="step reveal-on-scroll">
                             <div class="step-num">03 / Analyse</div>
-                            <h3>Understand what's actually working</h3>
-                            <p>Lambda brings your numbers and your reflections together — so you can see where your method is, and isn't, delivering growth.</p>
+                            <h3>Read the pattern, not the session</h3>
+                            <p>One bad session is noise. Six weeks of data is signal. Lambda brings your numbers and context together so you can see what&rsquo;s actually happening &mdash; not what it felt like on any given day.</p>
                         </div>
                         <div class="step reveal-on-scroll">
-                            <div class="step-num">04 / Evolve</div>
-                            <h3>Make the call with confidence</h3>
-                            <p>You decide what changes — load, frequency, exercise selection, structure. Lambda doesn't prescribe. It informs. The best decision is always yours to make.</p>
+                            <div class="step-num">04 / Decide</div>
+                            <h3>Worked. Failed. Needs more time.</h3>
+                            <p>Lambda narrows the question using your data. You make the call &mdash; change the load, commit to an exercise, extend the block, pull back. The framework informs the decision. It never makes it for you.</p>
                         </div>
                     </div>
-                    <div class="carousel-nav" role="group" aria-label="How it works carousel">
+                    <div class="carousel-nav" role="group" aria-label="Cycle carousel">
                         <button type="button" class="carousel-btn carousel-btn--prev" aria-label="Previous slide">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
                         </button>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaching — Lambda</title>
+    <meta name="description" content="Book an online consultation to walk through the Lambda training framework and how the app closes your feedback loop.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <a href="index.html" class="logo" aria-label="Lambda home">
+                <span class="logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 314 528" width="13" height="22" focusable="false">
+                        <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
+                    </svg>
+                </span>
+                <span>Lambda</span>
+            </a>
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="how-it-works.html">How it works</a>
+                <a href="coaching.html" aria-current="page">Coaching</a>
+                <a href="contact.html">Contact</a>
+                <a href="beta-testing.html">Beta Testing</a>
+            </div>
+            <a href="beta-testing.html" class="nav-cta">Get early access</a>
+        </div>
+    </nav>
+
+    <main class="page-sub">
+        <header class="page-sub__hero">
+            <div class="container">
+                <div class="section-label">// Coaching</div>
+                <h1>Book a framework consult.</h1>
+                <p class="section-sub">
+                    One-on-one video calls for lifters who want to see how <strong>Lambda’s principles</strong>, the <strong>Lambda app</strong>, and their own training fit together — without buying into a canned program.
+                </p>
+                <p class="section-sub" style="margin-top: 1rem;">
+                    We’ll walk through what “<span class="accent">stop assuming, start knowing</span>” looks like for your context: feedback, evidence, and the calls <em>you</em> still make at the end of the day.
+                </p>
+            </div>
+        </header>
+
+        <section class="coaching-layout">
+            <div class="container coaching-grid">
+                <div class="coaching-prose reveal-on-scroll">
+                    <div class="section-label">// What you get</div>
+                    <h2>A conversation — not a plan PDF.</h2>
+                    <p class="section-sub" style="max-width: 52ch; margin-bottom: 20px;">
+                        These sessions are for clarifying how the <strong>framework</strong> thinks about overload, recovery, and evidence — and how logging in the app supports that. You leave with perspective, not a file someone else wrote for a stranger.
+                    </p>
+                    <ul class="coaching-benefits">
+                        <li>45-minute video call (time zone confirmed after booking goes live)</li>
+                        <li>Space to ask how principles apply to your current method</li>
+                        <li>Honest read on whether Lambda’s loop is a fit for how you train</li>
+                        <li>Optional: orientation toward beta access when slots allow</li>
+                    </ul>
+                    <p class="section-sub" style="margin-top: 28px; max-width: 52ch;">
+                        Administrative questions? <a class="text-link-accent" href="contact.html">Contact</a> separately. This page is only for consult bookings once scheduling is wired up.
+                    </p>
+                </div>
+
+                <aside class="coaching-card reveal-on-scroll" aria-labelledby="booking-heading">
+                    <h2 id="booking-heading">Schedule a call</h2>
+                    <p class="section-sub">Booking will open here soon — pick a slot, add a note, and confirm. For now this block is a design placeholder.</p>
+
+                    <div class="booking-field">
+                        <label for="booking-date">Preferred date</label>
+                        <select id="booking-date" class="booking-select" disabled aria-disabled="true">
+                            <option>Select a date…</option>
+                        </select>
+                    </div>
+                    <div class="booking-field">
+                        <label for="booking-time">Preferred time</label>
+                        <select id="booking-time" class="booking-select" disabled aria-disabled="true">
+                            <option>Select a time…</option>
+                        </select>
+                    </div>
+                    <div class="booking-field">
+                        <label for="booking-topic">Focus (optional)</label>
+                        <select id="booking-topic" class="booking-select" disabled aria-disabled="true">
+                            <option>Framework overview</option>
+                            <option>App &amp; logging</option>
+                            <option>Periodisation / fatigue</option>
+                        </select>
+                    </div>
+
+                    <div class="booking-actions">
+                        <button type="button" class="btn-booking" disabled>Confirm booking — coming soon</button>
+                    </div>
+                    <p class="booking-note">
+                        Live calendar integration (e.g. Cal.com, Calendly, or custom) can replace this card when you’re ready. No backend is hooked up yet.
+                    </p>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <a href="index.html" class="logo" aria-label="Lambda home">
+                <span class="logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 314 528" width="13" height="22" focusable="false">
+                        <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
+                    </svg>
+                </span>
+                <span>Lambda</span>
+            </a>
+            <div>&copy; <span id="year"></span> Lambda. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="site.js"></script>
+</body>
+</html>
