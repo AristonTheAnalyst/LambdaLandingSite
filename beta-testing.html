@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beta testing — Lambda</title>
+    <meta name="description" content="Join the Lambda waitlist for early access and to help shape the framework.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <a href="index.html" class="logo" aria-label="Lambda home">
+                <span class="logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 314 528" width="13" height="22" focusable="false">
+                        <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
+                    </svg>
+                </span>
+                <span>Lambda</span>
+            </a>
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="how-it-works.html">How it works</a>
+                <a href="contact.html">Contact</a>
+                <a href="beta-testing.html" aria-current="page">Beta Testing</a>
+            </div>
+            <a href="beta-testing.html" class="nav-cta">Get early access</a>
+        </div>
+    </nav>
+
+    <main class="page-sub">
+        <header class="page-sub__hero">
+            <div class="container">
+                <div class="section-label">// Beta</div>
+                <h1>Join the waitlist.</h1>
+                <p class="section-sub">
+                    Early access spots are limited. Add your email below — we’ll only send meaningful updates.
+                </p>
+            </div>
+        </header>
+
+        <section class="cta-section reveal-on-scroll">
+            <div class="container">
+                <div class="cta-card">
+                    <div class="section-label">// Early access</div>
+                    <h2>Be first to train with Lambda.</h2>
+                    <p class="section-sub">
+                        Lambda is in active development. Join the waitlist to get early access — and to help shape what the framework becomes.
+                    </p>
+                    <form class="signup" novalidate>
+                        <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
+                        <button type="submit" aria-busy="false"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-text">Join waitlist</span></button>
+                    </form>
+                    <p class="signup-note">No spam. Unsubscribe anytime.</p>
+                    <p class="signup-status" role="status" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <a href="index.html" class="logo" aria-label="Lambda home">
+                <span class="logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 314 528" width="13" height="22" focusable="false">
+                        <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
+                    </svg>
+                </span>
+                <span>Lambda</span>
+            </a>
+            <div>&copy; <span id="year"></span> Lambda. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="site.js"></script>
+</body>
+</html>
