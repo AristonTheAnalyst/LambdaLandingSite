@@ -167,6 +167,34 @@ function attachForm(form, status) {
     });
 }
 
+(function initTextSwap() {
+    var el = document.getElementById('feature-swap-label');
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var labels = ['No bloatware.', 'Just training.'];
+    var i = 0;
+    var dur = 300;
+    setInterval(function () {
+        // exit: slide up + fade out
+        el.style.transition = 'opacity ' + dur + 'ms ease, transform ' + dur + 'ms ease';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-10px)';
+        setTimeout(function () {
+            // instant reposition to below, swap text
+            el.style.transition = 'none';
+            el.style.transform = 'translateY(10px)';
+            i = (i + 1) % labels.length;
+            el.textContent = labels[i];
+            // force reflow so the browser registers the reset before re-enabling transition
+            void el.offsetWidth;
+            // enter: slide up + fade in
+            el.style.transition = 'opacity ' + dur + 'ms ease, transform ' + dur + 'ms ease';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, dur + 20);
+    }, 2800);
+})();
+
 document.querySelectorAll('form.signup').forEach(function (form) {
     var scope = form.closest('.cta-card') || form.parentElement;
     var status = scope.querySelector('.signup-status');
