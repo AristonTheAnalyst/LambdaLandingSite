@@ -30,6 +30,18 @@
                 <a href="beta-testing.html">Beta Testing</a>
             </div>
             <a href="beta-testing.html" class="nav-cta">Get early access</a>
+            <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="nav-mobile">
+            <div class="container nav-mobile__links">
+                <a href="about.html">About</a>
+                <a href="how-it-works.html" aria-current="page">How it works</a>
+                <a href="coaching.html">Coaching</a>
+                <a href="contact.html">Contact</a>
+                <a href="beta-testing.html">Beta Testing</a>
+            </div>
         </div>
     </nav>
 
@@ -49,21 +61,31 @@
 
         <section>
             <div class="container">
-                <div class="overview-grid reveal-on-scroll" style="padding: 32px 0 16px;">
-                    <div class="overview-pillar">
-                        <div class="section-label">// Log it</div>
-                        <h3>Track what matters, nothing else</h3>
-                        <p>Sets, reps, weight, bodyweight, sleep, pre-session readiness, session feel. Each field has a specific job. Together they build a picture of your training that can actually be read.</p>
+                <div class="carousel-wrap">
+                    <div class="overview-grid reveal-stagger carousel-track">
+                        <div class="overview-pillar reveal-on-scroll">
+                            <div class="section-label">// Log it</div>
+                            <h3>Track what matters, nothing else</h3>
+                            <p>Sets, reps, weight, bodyweight, sleep, pre-session readiness, session feel. Each field has a specific job. Together they build a picture of your training that can actually be read.</p>
+                        </div>
+                        <div class="overview-pillar reveal-on-scroll">
+                            <div class="section-label">// Read it</div>
+                            <h3>Patterns across sessions, not noise across sets</h3>
+                            <p>A single session is anecdote. Lambda organises your logs into trends &mdash; volume over time, performance relative to readiness, exercise consistency &mdash; and surfaces what actually means something.</p>
+                        </div>
+                        <div class="overview-pillar reveal-on-scroll">
+                            <div class="section-label">// Decide</div>
+                            <h3>Three possible conclusions</h3>
+                            <p>Worked. Failed. Needs more time. Lambda narrows the question using your own data. You make the call. The evidence is yours; the decision is yours.</p>
+                        </div>
                     </div>
-                    <div class="overview-pillar">
-                        <div class="section-label">// Read it</div>
-                        <h3>Patterns across sessions, not noise across sets</h3>
-                        <p>A single session is anecdote. Lambda organises your logs into trends &mdash; volume over time, performance relative to readiness, exercise consistency &mdash; and surfaces what actually means something.</p>
-                    </div>
-                    <div class="overview-pillar">
-                        <div class="section-label">// Decide</div>
-                        <h3>Three possible conclusions</h3>
-                        <p>Worked. Failed. Needs more time. Lambda narrows the question using your own data. You make the call. The evidence is yours; the decision is yours.</p>
+                    <div class="carousel-nav" role="group" aria-label="How it works carousel">
+                        <button type="button" class="carousel-btn carousel-btn--prev" aria-label="Previous slide">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <button type="button" class="carousel-btn carousel-btn--next" aria-label="Next slide">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
                     </div>
                 </div>
             </div>

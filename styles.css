@@ -54,6 +54,102 @@
             justify-content: space-between;
             height: 64px;
         }
+
+        /* Hamburger button */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0;
+            flex-shrink: 0;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: transform 0.25s ease, opacity 0.2s ease;
+            pointer-events: none;
+        }
+        .nav--open .nav-hamburger span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav--open .nav-hamburger span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .nav--open .nav-hamburger span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile nav backdrop overlay */
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 49;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .nav-overlay.is-visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Mobile nav dropdown */
+        .nav-mobile {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            border-top: 1px solid var(--border);
+            background: rgba(10, 10, 10, 0.98);
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+        }
+        .nav--open .nav-mobile {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0s;
+        }
+        .nav-mobile__links {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 0 28px;
+        }
+        .nav-mobile__links a {
+            padding: 18px 12px;
+            font-size: 16px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            transition: color 0.15s ease;
+        }
+        .nav-mobile__links a:hover { color: var(--text); }
+        .nav-mobile__links a[aria-current="page"] { color: var(--text); }
+        .nav-mobile__cta {
+            margin-top: 16px;
+            padding: 13px !important;
+            background: var(--text);
+            color: var(--bg) !important;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px !important;
+            border-bottom: none !important;
+        }
         .logo {
             display: flex;
             align-items: center;
@@ -740,6 +836,8 @@
         /* ---------- Mobile layout (carousel + rhythm) ---------- */
         @media (max-width: 720px) {
             .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
 
             section#features,
             section#how,
@@ -761,6 +859,10 @@
                 padding: 40px 20px;
             }
             .cta-card .section-sub { margin-bottom: 24px; }
+
+            .page-sub__hero { padding: 36px 0 32px; }
+            .page-sub__hero h1 { font-size: clamp(28px, 8vw, 40px); }
+            .beta-signup-card { padding: 32px 20px; }
 
             footer { padding: 24px 0; }
 
@@ -794,12 +896,21 @@
 
             /* One full-width slide per view (matches track padding, no adjacent peek) */
             .carousel-track .feature,
-            .carousel-track .step {
+            .carousel-track .step,
+            .carousel-track .overview-pillar {
                 flex: 0 0 calc(100vw - 48px);
                 width: calc(100vw - 48px);
                 max-width: calc(100vw - 48px);
                 scroll-snap-align: start;
                 scroll-snap-stop: normal;
+            }
+
+            .carousel-track .overview-pillar {
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 24px 20px;
+                box-sizing: border-box;
             }
 
             .carousel-track .step {
@@ -921,11 +1032,8 @@
         }
         .overview-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 28px 32px;
-        }
-        @media (max-width: 900px) {
-            .overview-grid { grid-template-columns: 1fr; }
         }
         .overview-pillar h3 {
             font-size: 17px;

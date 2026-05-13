@@ -167,6 +167,41 @@ function attachForm(form, status) {
     });
 }
 
+(function initMobileNav() {
+    var btn = document.querySelector('.nav-hamburger');
+    var nav = btn && btn.closest('nav');
+    if (!btn || !nav) return;
+
+    var overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    document.body.appendChild(overlay);
+
+    function open() {
+        nav.classList.add('nav--open');
+        overlay.classList.add('is-visible');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Close menu');
+        document.body.style.overflow = 'hidden';
+    }
+    function close() {
+        nav.classList.remove('nav--open');
+        overlay.classList.remove('is-visible');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+        document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', function () {
+        nav.classList.contains('nav--open') ? close() : open();
+    });
+
+    overlay.addEventListener('click', close);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') close();
+    });
+})();
+
 (function initTextSwap() {
     var el = document.getElementById('feature-swap-label');
     if (!el) return;
