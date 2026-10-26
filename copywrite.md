@@ -1,5 +1,9 @@
 # Lambda — Copywriting
 
+> Historical copy deck from the earlier multi-page site. The current site is
+> two pages, `index.html` and `privacy.html`; see the README. This file is kept
+> for reference and is not loaded by the site.
+
 ---
 
 ## Home (index.html)
@@ -221,23 +225,23 @@ Two examples of what the framework finds when you give it real training data. Th
 
 ---
 
-### Cycle — Design, track, analyse, decide
+### Cycle — PR, plan, goals, collaborate
 
 **Section label:** // Cycle
 
-**Headline:** Design, track, analyse, decide.
+**Headline:** PR. Plan. Goals. Collaborate.
 
-**Description:** Four phases that repeat — each one informed by more signal than the last.
+**Description:** Four phases that repeat — each one feeding the next.
 
 **Steps:**
 
-1. **01 / Design — Set your intent** — Decide what you're training for — a strength block, a hypertrophy phase, a competition cycle. Lambda structures your plan around that intent. Not a preset handed to you; a framework for the choices you make.
+1. **01 / PR — Catch every record** — Smart PR detection reads your logged sets and flags the records as they fall — rep PRs, load PRs, estimated maxes. You never have to remember your bests; Lambda does.
 
-2. **02 / Track — Log with purpose** — Each session gets the full picture: load, volume, readiness, feel. Consistent logging is what turns individual sessions into readable data. Lambda keeps it fast so it actually happens.
+2. **02 / Plan — Plan the work** — Workouts, full programs and reviews in one place. Build the block, run it, then look back at what it actually delivered.
 
-3. **03 / Analyse — Read the pattern, not the session** — One bad session is noise. Six weeks of data is signal. Lambda brings your numbers and context together so you can see what's actually happening — not what it felt like on any given day.
+3. **03 / Goal setting — Make it measurable** — Set training goals the SMART way — specific, measurable, achievable, relevant and time-bound. Lambda keeps the target in view from planning through to review.
 
-4. **04 / Decide — Worked. Failed. Needs more time.** — Lambda narrows the question using your data. You make the call — change the load, commit to an exercise, extend the block, pull back. The framework informs the decision. It never makes it for you.
+4. **04 / Collaborate — Train together** — Add friends, compare logs and review each other's training. Feedback from people who know how you lift keeps the loop honest.
 
 ---
 

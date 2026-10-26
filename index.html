@@ -4,334 +4,450 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lambda &mdash; The resistance training framework</title>
-    <meta name="description" content="Lambda is a decision-making framework for resistance training. Your data, your history, your conclusions &mdash; stop assuming, start knowing.">
+    <meta name="description" content="Lambda is a decision-making framework for resistance training. Log your sessions, read your own data, and decide what actually works. Stop assuming. Start knowing.">
+    <meta name="theme-color" content="#262626">
     <meta property="og:title" content="Lambda &mdash; The resistance training framework">
-    <meta property="og:description" content="Decision-making framework for resistance training. Your data closes the loop. Stop assuming, start knowing.">
+    <meta property="og:description" content="A framework for resistance training built on your own session data. Stop assuming. Start knowing.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lambda-training.com/">
+    <meta property="og:site_name" content="Lambda">
+    <link rel="canonical" href="https://lambda-training.com/">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="page-loader" class="page-loader" role="status" aria-live="polite" aria-busy="true" aria-label="Loading">
-        <div class="page-loader__mark" aria-hidden="true">
-            <svg viewBox="0 0 314 528" width="14" height="24" focusable="false">
-                <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
-            </svg>
-        </div>
-        <div class="page-loader__ring" aria-hidden="true"></div>
-        <span class="page-loader__label">Loading</span>
-    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <nav>
-        <div class="container nav-inner">
-            <a href="index.html" class="logo" aria-label="Lambda home">
-                <span class="logo-mark" aria-hidden="true">
-                    <svg viewBox="0 0 314 528" width="13" height="22" focusable="false">
-                        <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
-                    </svg>
-                </span>
-                <span>Lambda</span>
+    <!-- Icon sprite: line glyphs borrowed from the app's Material vocabulary. -->
+    <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+        <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+        <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="19" cy="12" r="1.2" fill="currentColor"/></symbol>
+        <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol>
+        <symbol id="i-note" viewBox="0 0 24 24"><path d="M4 4h16v11l-5 5H4z"/><path d="M15 20v-5h5"/></symbol>
+        <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z"/></symbol>
+        <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-1"/></symbol>
+        <symbol id="i-redo" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h1"/></symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17v-9"/></symbol>
+        <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6h.01M4 12h.01M4 18h.01M8 6h12M8 12h12M8 18h12"/></symbol>
+        <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10.5 8.5 5 3.5-5 3.5z"/></symbol>
+        <symbol id="i-dumbbell" viewBox="0 0 24 24"><path d="M6 7v10M18 7v10M3 9v6M21 9v6M6 12h12"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    </svg>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Lambda home">
+                <svg class="brand-mark" viewBox="0 0 314 528" aria-hidden="true" focusable="false">
+                    <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="currentColor" stroke="currentColor" stroke-width="12.76" stroke-linejoin="round" stroke-linecap="round"/>
+                </svg>
+                <span class="brand-name">Lambda</span>
+                <span class="badge-beta mono">Beta</span>
             </a>
-            <div class="nav-links">
-                <a href="about.html">About</a>
-                <a href="how-it-works.html">How it works</a>
-                <a href="coaching.html">Coaching</a>
-                <a href="contact.html">Contact</a>
-                <a href="beta-testing.html">Beta Testing</a>
-            </div>
-            <a href="beta-testing.html" class="nav-cta">Get early access</a>
-            <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-        <div class="nav-mobile">
-            <div class="container nav-mobile__links">
-                <a href="about.html">About</a>
-                <a href="how-it-works.html">How it works</a>
-                <a href="coaching.html">Coaching</a>
-                <a href="contact.html">Contact</a>
-                <a href="beta-testing.html">Beta Testing</a>
-            </div>
-        </div>
-    </nav>
 
-    <header class="hero" id="about">
-        <div class="hero-grid"></div>
-        <div class="container hero-inner">
+            <nav class="site-nav" aria-label="Primary">
+                <a href="#loop">The loop</a>
+                <a href="#inside">Inside the app</a>
+                <a href="#method">Method</a>
+            </nav>
 
-            <div class="hero-text">
-                <div class="eyebrow hero-reveal">
-                    <span class="dot"></span>
-                    <span class="mono">Currently in development</span>
-                </div>
-                <h1 class="hero-reveal headline-fixed-lines">The training framework<br>that <span class="accent">learns from you.</span></h1>
-                <p class="section-sub hero-reveal">
-                    <strong>Is your training actually working?</strong> Lambda answers that question using data from your own sessions &mdash; not someone else&rsquo;s program. Log in the <strong>Lambda app</strong>, close the loop: <span class="accent">stop assuming. Start knowing.</span>
-                </p>
-                <form id="waitlist-form" class="signup hero-reveal" novalidate>
-                    <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
-                    <button type="submit" aria-busy="false"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-text">Join waitlist</span></button>
-                </form>
-                <p class="signup-note hero-reveal">Be first in line. No spam &mdash; only meaningful updates.</p>
-                <p id="signup-status" class="signup-status" role="status" aria-live="polite"></p>
-            </div>
-
-            <div class="hero-phones">
-                <!-- Phone 1: Session log -->
-                <div class="phone hero-reveal">
-                    <div class="phone-island"></div>
-                    <div class="phone-screen">
-                        <div class="ps-header">
-                            <div class="ps-logo">
-                                <div class="ps-logo-mark">
-                                    <svg viewBox="0 0 314 528" width="6" height="10" focusable="false" aria-hidden="true">
-                                        <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
-                                    </svg>
-                                </div>
-                                <span>Lambda</span>
-                            </div>
-                            <span style="font-size:11.5px;color:var(--text-dim)">Mon 13</span>
-                        </div>
-                        <div class="ps-title">Leg Day</div>
-                        <div class="ps-sub">Hypertrophy &middot; Session 14</div>
-                        <div class="ps-divider"></div>
-                        <div class="ps-row">
-                            <span class="ps-row-label">Squat</span>
-                            <div class="ps-row-bar"><div class="ps-row-bar-fill" style="width:82%"></div></div>
-                            <span class="ps-row-val">4&times;6</span>
-                        </div>
-                        <div class="ps-row">
-                            <span class="ps-row-label">Leg Press</span>
-                            <div class="ps-row-bar"><div class="ps-row-bar-fill" style="width:68%"></div></div>
-                            <span class="ps-row-val">3&times;10</span>
-                        </div>
-                        <div class="ps-row">
-                            <span class="ps-row-label">RDL</span>
-                            <div class="ps-row-bar"><div class="ps-row-bar-fill" style="width:74%"></div></div>
-                            <span class="ps-row-val">3&times;8</span>
-                        </div>
-                        <div class="ps-row">
-                            <span class="ps-row-label">Leg Curl</span>
-                            <div class="ps-row-bar"><div class="ps-row-bar-fill" style="width:60%"></div></div>
-                            <span class="ps-row-val">3&times;12</span>
-                        </div>
-                        <div class="ps-divider"></div>
-                        <div class="ps-stat">
-                            <span class="ps-stat-label">Avg RPE</span>
-                            <span class="ps-stat-val">7.4</span>
-                        </div>
-                        <div class="ps-stat">
-                            <span class="ps-stat-label">Fatigue</span>
-                            <span class="ps-stat-val is-accent">Moderate</span>
-                        </div>
-                        <div class="ps-stat">
-                            <span class="ps-stat-label">Volume</span>
-                            <span class="ps-stat-val">14,820 lb</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phone 2: Progress chart -->
-                <div class="phone hero-reveal">
-                    <div class="phone-island"></div>
-                    <div class="phone-screen">
-                        <div class="ps-header">
-                            <div class="ps-logo">
-                                <div class="ps-logo-mark">
-                                    <svg viewBox="0 0 314 528" width="6" height="10" focusable="false" aria-hidden="true">
-                                        <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
-                                    </svg>
-                                </div>
-                                <span>Lambda</span>
-                            </div>
-                            <span style="font-size:11.5px;color:var(--accent)">&uarr; PR week</span>
-                        </div>
-                        <div class="ps-title">Squat</div>
-                        <div class="ps-sub">8-week trend</div>
-                        <svg class="ps-chart" viewBox="0 0 172 60" preserveAspectRatio="none" fill="none" aria-hidden="true">
-                            <defs>
-                                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#eb912b" stop-opacity="0.3"/>
-                                    <stop offset="100%" stop-color="#eb912b" stop-opacity="0"/>
-                                </linearGradient>
-                            </defs>
-                            <path d="M0,52 L22,46 L44,40 L66,32 L88,26 L110,18 L132,12 L154,7 L172,4 L172,60 L0,60 Z" fill="url(#chartGrad)"/>
-                            <polyline points="0,52 22,46 44,40 66,32 88,26 110,18 132,12 154,7 172,4" stroke="#eb912b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div class="ps-divider"></div>
-                        <div class="ps-stat">
-                            <span class="ps-stat-label">Progress</span>
-                            <span class="ps-stat-val is-accent">+15 lb</span>
-                        </div>
-                        <div class="ps-stat">
-                            <span class="ps-stat-label">Volume</span>
-                            <span class="ps-stat-val">&#9650; 22%</span>
-                        </div>
-                        <div class="ps-stat">
-                            <span class="ps-stat-label">Avg RPE</span>
-                            <span class="ps-stat-val">&darr; 0.4</span>
-                        </div>
-                        <div class="ps-divider"></div>
-                        <div class="ps-badge">&uarr; Above baseline</div>
-                    </div>
-                </div>
-            </div>
-
+            <a class="btn btn--solid btn--compact header-cta" href="#early-access">Join waitlist</a>
         </div>
     </header>
 
-    <section id="features">
-        <div class="container">
-            <div class="section-header reveal-on-scroll">
-                <div class="section-label">// Features</div>
-                <h2 class="headline-fixed-lines">Stop assuming.<br>Start knowing.</h2>
-                <p class="section-sub">
-                    Log sets, build programs, track PRs &mdash; then go further. Lambda connects your training data to the questions that actually matter about your progress, your consistency, and your readiness.
-                </p>
-            </div>
+    <main id="main">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>In active development</p>
+                    <h1 class="hero-title" id="hero-title">The training framework that <span class="accent-text">learns from you.</span></h1>
+                    <p class="lead">Is your training actually working? Lambda answers with data from your own sessions &mdash; not someone else&rsquo;s program. Log the work, close the loop, stop assuming.</p>
 
-            <div class="carousel-wrap">
-            <div class="features reveal-stagger carousel-track">
-                <div class="feature reveal-on-scroll">
-                    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-                        <div class="feature-icon" style="margin-bottom:0;flex-shrink:0;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    <form class="waitlist-form" action="https://formspree.io/f/xlgzvgee" method="POST" aria-label="Join the waitlist" data-waitlist novalidate>
+                        <div class="waitlist-row">
+                            <label class="sr-only" for="waitlist-email">Email address</label>
+                            <input class="input" id="waitlist-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+                            <button class="btn btn--solid" type="submit">
+                                <span class="btn-spinner" aria-hidden="true"></span>
+                                <span class="btn-label">Join waitlist</span>
+                            </button>
                         </div>
-                        <h3 style="margin-bottom:0;">Plan</h3>
-                    </div>
-                    <p>Set your goals, build programs, and map out your training sessions. Define your intended frequency and level of commitment &mdash; the baseline Lambda measures everything else against.</p>
+                        <p class="form-status" role="status" aria-live="polite"></p>
+                        <p class="form-note">Be first in line. No spam &mdash; only meaningful updates. <a href="privacy.html">Privacy Policy</a>.</p>
+                    </form>
                 </div>
-                <div class="feature reveal-on-scroll">
-                    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-                        <div class="feature-icon" style="margin-bottom:0;flex-shrink:0;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+
+                <div class="hero-visual">
+                    <div class="phone" aria-hidden="true">
+                        <div class="phone-screen">
+                            <div class="phone-status">
+                                <span class="mono">9:41</span>
+                                <span class="status-glyphs"><i></i><i></i><i></i></span>
+                            </div>
+
+                            <div class="phone-header">
+                                <span class="glyph"><svg class="icon" viewBox="0 0 24 24"><use href="#i-chevron-left"></use></svg></span>
+                                <span class="phone-title">Leg Day</span>
+                                <span class="glyph"><svg class="icon" viewBox="0 0 24 24"><use href="#i-more"></use></svg></span>
+                            </div>
+
+                            <div class="phone-content">
+                                <div class="date-bar">
+                                    <span class="date-arrow"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-chevron-left"></use></svg></span>
+                                    <span class="date-phrase">
+                                        <span class="date-state mono">Today &mdash;</span>
+                                        <span class="date-value mono">25 Oct 2026</span>
+                                    </span>
+                                    <span class="date-arrow date-arrow--off"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-chevron-right"></use></svg></span>
+                                </div>
+
+                                <div class="date-modes">
+                                    <span class="radio radio--on"><span class="radio-dot"></span>Exercise</span>
+                                    <span class="radio"><span class="radio-dot"></span>Session by exercise</span>
+                                </div>
+
+                                <div class="exercise-pills">
+                                    <span class="pill pill--active">Back Squat</span>
+                                    <span class="pill">RDL</span>
+                                    <span class="pill pill--add">+</span>
+                                </div>
+
+                                <div class="set-grid">
+                                    <div class="set-head"><span>Set</span><span>Kg</span><span>Reps</span><span></span></div>
+                                    <div class="set-row">
+                                        <span class="cell cell--num">1</span>
+                                        <span class="cell">100</span>
+                                        <span class="cell">6</span>
+                                        <span class="cell cell--note"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-note"></use></svg></span>
+                                    </div>
+                                    <div class="set-row">
+                                        <span class="cell cell--num">2</span>
+                                        <span class="cell">100</span>
+                                        <span class="cell">6</span>
+                                        <span class="cell cell--note"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-note"></use></svg></span>
+                                    </div>
+                                    <div class="set-row set-row--pr">
+                                        <span class="cell cell--num">3</span>
+                                        <span class="cell">105</span>
+                                        <span class="cell">5</span>
+                                        <span class="cell cell--pr">PR</span>
+                                    </div>
+                                    <div class="set-row">
+                                        <span class="cell cell--num">4</span>
+                                        <span class="cell">105</span>
+                                        <span class="cell">5</span>
+                                        <span class="cell cell--note"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-note"></use></svg></span>
+                                    </div>
+                                </div>
+
+                                <div class="add-set"><span aria-hidden="true">+</span> Add set</div>
+
+                                <div class="floor-row">
+                                    <span class="floor-icon"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-undo"></use></svg></span>
+                                    <span class="floor-icon"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-redo"></use></svg></span>
+                                    <span class="floor-tile floor-tile--accent">
+                                        <svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-trophy"></use></svg>
+                                        <span class="mono">+2</span>
+                                    </span>
+                                    <span class="floor-tile">
+                                        <svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-note"></use></svg>
+                                        <span class="mono">1</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="phone-nav">
+                                <span class="navitem"><svg class="icon" viewBox="0 0 24 24"><use href="#i-chart"></use></svg></span>
+                                <span class="navitem"><svg class="icon" viewBox="0 0 24 24"><use href="#i-list"></use></svg></span>
+                                <span class="navitem navitem--active"><svg class="icon" viewBox="0 0 24 24"><use href="#i-play"></use></svg></span>
+                                <span class="navitem"><svg class="icon" viewBox="0 0 24 24"><use href="#i-dumbbell"></use></svg></span>
+                                <span class="navitem"><svg class="icon" viewBox="0 0 24 24"><use href="#i-user"></use></svg></span>
+                            </div>
                         </div>
-                        <h3 style="margin-bottom:0;">Capture</h3>
                     </div>
-                    <p>Log sets, reps, and weight for every workout. Record non-training variables &mdash; sleep, nutrition, hydration, bodyweight &mdash; that give your session data context. Fast, opinionated entry with no unnecessary fields.</p>
-                </div>
-                <div class="feature reveal-on-scroll">
-                    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-                        <div class="feature-icon" style="margin-bottom:0;flex-shrink:0;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+
+                    <div class="pr-toast" aria-hidden="true">
+                        <span class="pr-toast-icon"><svg class="icon" viewBox="0 0 24 24"><use href="#i-trophy"></use></svg></span>
+                        <div>
+                            <p class="pr-toast-label mono">PR history</p>
+                            <p class="pr-toast-value mono">105 kg &times; 5</p>
+                            <p class="pr-toast-sub mono">+5 kg &middot; 8-week best</p>
                         </div>
-                        <h3 style="margin-bottom:0;">Analyze</h3>
                     </div>
-                    <p>See how what you&rsquo;ve captured compares to what you planned. Lambda helps you understand why your results look the way they do &mdash; identifying where the gap between expectation and outcome comes from.</p>
+
+                    <p class="sr-only">Preview of the Lambda session screen: a leg day with four logged sets, the third marked as a personal record, PR and exercise-note tiles at the bottom, and the app&rsquo;s floating navigation bar.</p>
                 </div>
-                <div class="feature reveal-on-scroll">
-                    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-                        <div class="feature-icon" style="margin-bottom:0;flex-shrink:0;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+        </section>
+
+        <section class="section" id="loop" aria-labelledby="loop-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>The loop</p>
+                    <h2 class="section-title" id="loop-title">PR. Plan. Goals. Collaborate.</h2>
+                    <p class="section-sub">Four phases that repeat, each one feeding the next. The app exists to make the loop fast enough to keep running.</p>
+                </div>
+
+                <ol class="loop-grid">
+                    <li class="card loop-step">
+                        <div class="loop-top"><span class="step-num mono">01</span><span class="chip mono">PR</span></div>
+                        <h3>Catch every record.</h3>
+                        <p>Smart PR detection reads your logged sets and flags the records as they fall &mdash; rep PRs, load PRs, estimated maxes. You never have to remember your bests; Lambda does.</p>
+                    </li>
+                    <li class="card loop-step">
+                        <div class="loop-top"><span class="step-num mono">02</span><span class="chip mono">Plan</span></div>
+                        <h3>Plan the work.</h3>
+                        <p>Workouts, full programs and reviews in one place. Build the block, run it, then look back at what it actually delivered.</p>
+                    </li>
+                    <li class="card loop-step">
+                        <div class="loop-top"><span class="step-num mono">03</span><span class="chip mono">Goal setting</span></div>
+                        <h3>Make it measurable.</h3>
+                        <p>Set training goals the SMART way &mdash; specific, measurable, achievable, relevant and time-bound. Lambda keeps the target in view from planning through to review.</p>
+                    </li>
+                    <li class="card loop-step">
+                        <div class="loop-top"><span class="step-num mono">04</span><span class="chip mono">Collaborate</span></div>
+                        <h3>Train together.</h3>
+                        <p>Add friends, compare logs and review each other&rsquo;s training. Feedback from people who know how you lift keeps the loop honest.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section section--surface" id="inside" aria-labelledby="inside-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Inside the app</p>
+                    <h2 class="section-title" id="inside-title">Clean data in. Clear signal out.</h2>
+                    <p class="section-sub">No bloatware. Every screen has a purpose, every field has a reason. This is what logging looks like when the data has somewhere to go.</p>
+                </div>
+
+                <div class="inside-grid">
+                    <article class="app-panel app-panel--wide" aria-hidden="true">
+                        <header class="panel-head">
+                            <span class="panel-label mono">Training</span>
+                            <span class="chip chip--live mono"><span class="status-dot"></span>Live</span>
+                        </header>
+                        <div class="mini-date"><span class="mono mini-date-state">Today &mdash;</span><span class="mono">25 Oct 2026</span></div>
+                        <div class="exercise-pills">
+                            <span class="pill pill--active">Back Squat</span>
+                            <span class="pill">RDL</span>
+                            <span class="pill pill--add">+</span>
                         </div>
-                        <h3 style="margin-bottom:0;"><span id="feature-swap-label" style="display:inline-block;">No bloatware.</span></h3>
-                    </div>
-                    <p>Clean session diaries. Clear programme views. Fast PR lookup and coaching tools. Every screen has a purpose, every field has a reason. If it isn&rsquo;t useful, it isn&rsquo;t there.</p>
+                        <div class="set-grid">
+                            <div class="set-head"><span>Set</span><span>Kg</span><span>Reps</span><span></span></div>
+                            <div class="set-row">
+                                <span class="cell cell--num">1</span><span class="cell">100</span><span class="cell">6</span>
+                                <span class="cell cell--note"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-note"></use></svg></span>
+                            </div>
+                            <div class="set-row">
+                                <span class="cell cell--num">2</span><span class="cell">100</span><span class="cell">6</span>
+                                <span class="cell cell--note"><svg class="icon icon--sm" viewBox="0 0 24 24"><use href="#i-note"></use></svg></span>
+                            </div>
+                            <div class="set-row set-row--pr">
+                                <span class="cell cell--num">3</span><span class="cell">105</span><span class="cell">5</span>
+                                <span class="cell cell--pr">PR</span>
+                            </div>
+                        </div>
+                        <div class="add-set"><span aria-hidden="true">+</span> Add set</div>
+                    </article>
+
+                    <article class="app-panel" aria-hidden="true">
+                        <header class="panel-head">
+                            <span class="panel-label mono">PR history</span>
+                            <span class="panel-meta mono">Back squat</span>
+                        </header>
+                        <div class="pr-feed">
+                            <div class="feed-shelf"><span class="mono">This session</span><span class="feed-rule"></span></div>
+                            <div class="pr-row pr-row--new">
+                                <div class="pr-info">
+                                    <span class="pr-main mono">105kg &times; 5</span>
+                                    <span class="pr-was mono">was 100kg &times; 5</span>
+                                </div>
+                                <span class="chip chip--accent mono">First PR</span>
+                            </div>
+                            <div class="feed-shelf"><span class="mono">Previously</span><span class="feed-rule"></span></div>
+                            <div class="pr-row">
+                                <span class="pr-main mono">100kg &times; 6</span>
+                                <span class="pr-date mono">12 Oct 2026</span>
+                            </div>
+                            <div class="pr-row">
+                                <span class="pr-main mono">97.5kg &times; 6</span>
+                                <span class="pr-date mono">05 Oct 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="app-panel" aria-hidden="true">
+                        <header class="panel-head">
+                            <span class="panel-label mono">Training logs</span>
+                            <span class="panel-meta mono">All time</span>
+                        </header>
+                        <div class="logs-filters">
+                            <span class="filter-chip filter-chip--on mono">Back squat</span>
+                            <span class="filter-chip mono">All time</span>
+                        </div>
+                        <div class="log-list">
+                            <div class="log-row">
+                                <span class="log-date mono">24 Oct</span>
+                                <span class="log-info"><span class="log-name">Pull Day</span><span class="log-meta mono">5 exercises &middot; 18 sets</span></span>
+                                <span class="log-pr mono">+2</span>
+                            </div>
+                            <div class="log-row">
+                                <span class="log-date mono">21 Oct</span>
+                                <span class="log-info"><span class="log-name">Leg Day</span><span class="log-meta mono">6 exercises &middot; 21 sets</span></span>
+                                <span class="log-pr mono">+1</span>
+                            </div>
+                            <div class="log-row">
+                                <span class="log-date mono">18 Oct</span>
+                                <span class="log-info"><span class="log-name">Upper Power</span><span class="log-meta mono">4 exercises &middot; 14 sets</span></span>
+                                <span class="log-pr log-pr--quiet mono">&mdash;</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <ul class="tag-row mono" aria-label="More in the app">
+                    <li>Programs</li>
+                    <li>Session templates</li>
+                    <li>Exercise library</li>
+                    <li>Goals</li>
+                    <li>PR history</li>
+                    <li>Exercise notes</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="method" aria-labelledby="method-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Methodology</p>
+                    <h2 class="section-title" id="method-title">One question. Three answers.</h2>
+                    <p class="section-sub">Every training decision starts with the same question: did the last thing work? Lambda organises your data around the only three honest answers.</p>
+                </div>
+
+                <div class="answer-grid">
+                    <article class="answer answer--worked">
+                        <p class="answer-label mono"><span class="answer-dot" aria-hidden="true"></span>It worked</p>
+                        <h3 class="answer-title">Keep the direction.</h3>
+                        <p class="answer-copy">Volume, load and performance are up while effort holds steady. The data agrees. Adjust the degree of what you are doing, not the method.</p>
+                        <p class="answer-facts mono">Volume &uarr; &middot; Load &uarr; &middot; RPE stable</p>
+                    </article>
+
+                    <article class="answer answer--failed">
+                        <p class="answer-label mono"><span class="answer-dot" aria-hidden="true"></span>It didn&rsquo;t work</p>
+                        <h3 class="answer-title">Change one variable.</h3>
+                        <p class="answer-copy">The data says so &mdash; not the feeling. Narrow the field with evidence: volume, consistency, exercise selection, readiness, fatigue.</p>
+                        <p class="answer-facts mono">Volume &darr; &middot; Variation changed &middot; Sleep low</p>
+                    </article>
+
+                    <article class="answer answer--time">
+                        <p class="answer-label mono"><span class="answer-dot" aria-hidden="true"></span>More time needed</p>
+                        <h3 class="answer-title">Stay the course.</h3>
+                        <p class="answer-copy">Not enough clean signal to conclude. Keep logging, keep the method stable, and return to the question with more evidence. This is a valid answer, not a failure.</p>
+                        <p class="answer-facts mono">4 weeks &middot; 9 sessions &middot; Building</p>
+                    </article>
                 </div>
             </div>
-            <div class="carousel-nav" role="group" aria-label="Feature carousel">
-                <button type="button" class="carousel-btn carousel-btn--prev" aria-label="Previous slide">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-                </button>
-                <button type="button" class="carousel-btn carousel-btn--next" aria-label="Next slide">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-                </button>
-            </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="how">
+        <section class="section section--surface" id="for" aria-labelledby="for-title">
+            <div class="container for-grid">
+                <div class="section-head section-head--left">
+                    <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Who it&rsquo;s for</p>
+                    <h2 class="section-title" id="for-title">Built for lifters who read their own data.</h2>
+                    <p class="section-sub">Lambda is specific about who it serves. The clearer that boundary is, the better it works for the people it is actually for.</p>
+                </div>
+
+                <div class="for-list">
+                    <article class="card for-item">
+                        <span class="for-index mono">01</span>
+                        <div>
+                            <h3>Beginners</h3>
+                            <p>Start with the right lens. Learn to read your training while you are still learning to do it &mdash; before program-hopping and borrowed advice set the habits.</p>
+                        </div>
+                    </article>
+                    <article class="card for-item">
+                        <span class="for-index mono">02</span>
+                        <div>
+                            <h3>Experienced lifters</h3>
+                            <p>When harder work stops working, diagnose what is actually wrong instead of guessing at the next program. The data you have already accumulated finally has a job.</p>
+                        </div>
+                    </article>
+                    <article class="card for-item">
+                        <span class="for-index mono">03</span>
+                        <div>
+                            <h3>Not for everyone</h3>
+                            <p>If you want a fixed program that tells you exactly what to lift, a template does that better. Lambda is a framework that informs your decisions. It will not make them for you.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-section" id="early-access" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-panel">
+                    <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Early access</p>
+                    <h2 class="cta-title" id="cta-title">Be first to train with Lambda.</h2>
+                    <p class="cta-sub">The app is in active development. Join the waitlist for early access &mdash; and to help shape what the framework becomes.</p>
+
+                    <form class="waitlist-form waitlist-form--cta" action="https://formspree.io/f/xlgzvgee" method="POST" aria-label="Join the early-access waitlist" data-waitlist novalidate>
+                        <div class="waitlist-row">
+                            <label class="sr-only" for="waitlist-email-cta">Email address</label>
+                            <input class="input" id="waitlist-email-cta" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+                            <button class="btn btn--solid" type="submit">
+                                <span class="btn-spinner" aria-hidden="true"></span>
+                                <span class="btn-label">Join waitlist</span>
+                            </button>
+                        </div>
+                        <p class="form-status" role="status" aria-live="polite"></p>
+                        <p class="form-note">No spam. Unsubscribe anytime. <a href="privacy.html">Privacy Policy</a>.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
         <div class="container">
-            <div class="section-header reveal-on-scroll">
-                <div class="section-label">// How it works</div>
-                <h2 class="headline-fixed-lines">A framework for<br>decision making.</h2>
-                <p class="section-sub">
-                    You can&rsquo;t steer what you don&rsquo;t see. The framework needs signal from real training &mdash; that&rsquo;s what the <strong>Lambda app</strong> is for: capture, organise, surface. Then you decide. Principles inform the move; the app shows whether it landed.
-                </p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="brand" href="index.html" aria-label="Lambda home">
+                        <svg class="brand-mark" viewBox="0 0 314 528" aria-hidden="true" focusable="false">
+                            <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="currentColor" stroke="currentColor" stroke-width="12.76" stroke-linejoin="round" stroke-linecap="round"/>
+                        </svg>
+                        <span class="brand-name">Lambda</span>
+                    </a>
+                    <p class="footer-tagline">A framework for resistance training. Your data, your history, your conclusions.</p>
+                </div>
+
+                <nav class="footer-col" aria-label="Explore">
+                    <p class="footer-title mono">Explore</p>
+                    <ul class="footer-links">
+                        <li><a href="#loop">The loop</a></li>
+                        <li><a href="#inside">Inside the app</a></li>
+                        <li><a href="#method">Method</a></li>
+                        <li><a href="#for">Who it&rsquo;s for</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer-col" aria-label="Legal and contact">
+                    <p class="footer-title mono">Legal</p>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="mailto:contact@lambda-training.com">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
 
-            <div class="carousel-wrap">
-            <div class="steps reveal-stagger carousel-track">
-                <div class="step reveal-on-scroll">
-                    <div class="step-num">01 / Design</div>
-                    <h3>Build your plan</h3>
-                    <p>Start with a plan built around your goals, schedule, and method. Lambda gives you the structure to be intentional from day one.</p>
-                </div>
-                <div class="step reveal-on-scroll">
-                    <div class="step-num">02 / Track</div>
-                    <h3>Run the plan long enough to learn from it</h3>
-                    <p>Log your sets, sessions, and how you felt. Consistency is what makes the data worth reading.</p>
-                </div>
-                <div class="step reveal-on-scroll">
-                    <div class="step-num">03 / Analyse</div>
-                    <h3>Understand what&rsquo;s actually working</h3>
-                    <p>Lambda brings your numbers and your context together &mdash; so you can see where your method is, and isn&rsquo;t, delivering results.</p>
-                </div>
-                <div class="step reveal-on-scroll">
-                    <div class="step-num">04 / Evolve</div>
-                    <h3>Make the call with confidence</h3>
-                    <p>You decide what changes &mdash; load, frequency, exercise selection, structure. Lambda doesn&rsquo;t prescribe. It informs. The best decision is always yours to make.</p>
-                </div>
+            <div class="footer-bottom">
+                <p class="mono">&copy; <span id="year">2026</span> Lambda. All rights reserved.</p>
+                <p class="mono">lambda-training.com</p>
             </div>
-            <div class="carousel-nav" role="group" aria-label="How it works carousel">
-                <button type="button" class="carousel-btn carousel-btn--prev" aria-label="Previous slide">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-                </button>
-                <button type="button" class="carousel-btn carousel-btn--next" aria-label="Next slide">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-                </button>
-            </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="waitlist" class="cta-section reveal-on-scroll">
-        <div class="container">
-            <div class="cta-card">
-                <div class="section-label">// Early access</div>
-                <h2>Be first to train with Lambda.</h2>
-                <p class="section-sub">
-                    Lambda is in active development. Join the waitlist to get early access &mdash; and to help shape what the framework becomes.
-                </p>
-                <form class="signup" novalidate>
-                    <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
-                    <button type="submit" aria-busy="false"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-text">Join waitlist</span></button>
-                </form>
-                <p class="signup-note">No spam. Unsubscribe anytime.</p>
-                <p class="signup-status" role="status" aria-live="polite"></p>
-            </div>
-        </div>
-    </section>
-
-    <div class="page-next">
-        <div class="container">
-            <a href="about.html" class="page-next__link">
-                <div>
-                    <div class="page-next__pre">// Up next</div>
-                    <div class="page-next__title">About Lambda</div>
-                </div>
-                <div class="page-next__arrow" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container footer-inner">
-            <a href="index.html" class="logo" aria-label="Lambda home">
-                <span class="logo-mark" aria-hidden="true">
-                    <svg viewBox="0 0 314 528" width="13" height="22" focusable="false">
-                        <path d="M222,521L157.03,330.888,92.86,521.622H6.8L114,206,46,6h86L308,521H222Z" fill="#0a0a0a"/>
-                    </svg>
-                </span>
-                <span>Lambda</span>
-            </a>
-            <div>&copy; <span id="year"></span> Lambda. All rights reserved.</div>
         </div>
     </footer>
 
